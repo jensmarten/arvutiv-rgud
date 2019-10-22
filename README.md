@@ -8,7 +8,7 @@ Juhul kui need ei tule tagasi ja timeouti lähevad siis kas a. Sul pole töötav
 b. Valitud hostil pole ühendust või seal aadressil pole arvutit.  
 "printf" Käsk võimaldab sõnade sisestamise ja selle abil erinevate asjade kätte saamise või saatmise.   
 "nc-l" Avab ühepoolse kuulamis ühenduse.  
-"nc" Võimaldab teiste hostidega suhtlemise ja kasutatakse tihti informatsiooni taotlustel.
+"nc" Võimaldab teiste hostidega suhtlemise. Kasutatakse tihti informatsiooni taotlustel ning andmete vahetamisel.
 
 Erinevad port numbrid, mis voivad vajalikud olla:
 22:SSH
@@ -36,30 +36,31 @@ Need on tavaliselt seatud erinevatele avalikele teenustele ja valitsustele.
 
 Püstitatud on ka probleem, milleks on see, et maailmas pole piisavalt IP aadresse olemas.
 See on lahendatud süsteemiga (NAT) mis võtab kokku kõik ühe ruuteri ühendused, vähendades kasutust.
+Mis võimaldab ühe IP aadressi all, luua terve privaatvõrgu.
 
 ```  
 ```  
 Lesson 4: "HTTP on TCP on IP"
 
-"tcpdump" 
-Samuti rääkis packetite vajalikkusest ning lähemalt, et kuidas need töötavad.
-Pärast x aja möödumist katkeb ühendus juhul, kui üks pool teiselt vastust ei saa.
+"tcpdump" Annab võimaluse detailsemalt jälgida kõike sisse ja välja minevat võrgu liiklust.
+Käsklusele peab tavaliselt lisama ka filtri/täpsustuse, et näha endale vajalikku informatsiooni.
+
+Andmete saatmisel võib esineda ka "Timeout". Timeout on saatmise protsessi katkestus koos erroriga.
+Timeout tekkib siis kui kumbki pool liiga kaua võrgus ei vasta. Põhjuseid võib selleks olla mitu.
+Näiteks a. Teist valitud hosti pole olemas b. Katkestus võrgus kummalgil poolel või interneti teenuse pakkuja poolne viga
+
 ```  
 ```  
-Lesson 5*
+Lesson 5: "Big Networks
 
-traceroute --> Näitab ette kõik enne läbitud IP-aadressid, milleni jõuti enne soovitud aadressile jõudmist.
-Ruuterid ei ole suutelised (või võimelised?) suurtes kogustes packeteid korraga läbi laskma ning räägiti selle lahendusest.
-Samuti oli jutt, et seadmetel on firewall, mis filtreerib seadme ja võrgu vahel toimuvat tegevust - vältides süsteemitõrkeid ning pahavara.
+Ühendades ennast teise hostiga läbi võrgu (nt veebilehega), peab sinu internetiliiklus
+liikuma läbi mitme erineva IP aadressi (ruuteri), et jõuda sihtkohta. Mida rohkem peatusi
+kust on vaja läbi minna, seda aeglasem on ühendus.
+"traceroute" Käsklus annab sulle nimekirja igast peatusest, mis enne sihtkohta läbiti.
+
+"Ping" kui definitsioon on, sinu signaalil kulutatud aeg, et liikuda sihtkohta ja tagasi.
+Mida suurem pingi kulutatud aeg, seda aeglasem on ühendus. Suur peatuste arv suurendab pingi.
+
 ```  
 ```  
-# Mida ma huvitavat teada sain:
 
-- Kuidas timeout tekib.
-
-- Juhul kui inimesed on NAT-iga eraldatud, saab neil olla sama IP-aadress.
-
-- Lõpmatute loopide vältimiseks on packetitel limiteeritud eluaeg.
-
-- Et eksisteerivad reserveeritud port-id (port-id 0-1023)
-```
